@@ -1,73 +1,57 @@
-# Welcome to your Lovable project
+🎬 MovieReview
+A modern movie review platform built with Lovable, featuring a sleek cinema-themed dark design with gold accents.
+✨ Features
 
-## Project info
+Browse Reviews: View all movie reviews from the community
+Submit Reviews: Share your thoughts on movies you've watched
+Star Ratings: Rate movies from 1 to 5 stars
+Search & Filter: Find reviews by movie name and filter by ratings
+Dark Theme: Cinema-inspired dark interface with gold accents
 
-**URL**: https://lovable.dev/projects/fbd35426-a917-4137-81c4-68cbcc55b6d2
+🛠️ Built With
 
-## How can I edit this code?
+Lovable - Visual web development platform
+Supabase - Backend and database
+React - Frontend framework
 
-There are several ways of editing your application.
+📋 Database Schema
+The app uses a movie_reviews table with the following structure:
 
-**Use Lovable**
+Movie name
+Reviewer name (optional/anonymous)
+Star rating (1-5)
+Review text (optional)
+Timestamp
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/fbd35426-a917-4137-81c4-68cbcc55b6d2) and start prompting.
+🚀 Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+Clone this repository
+Open in Lovable platform
+Configure your Supabase connection
+Set up the database policies for public inserts:
 
-**Use your preferred IDE**
+sql-- Allow public inserts (no authentication required)
+CREATE POLICY "Allow public inserts" ON public.movie_reviews
+FOR INSERT TO anon, authenticated
+WITH CHECK (true);
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+-- Allow public insert access
+CREATE POLICY "Allow public insert access" ON public.movie_reviews
+FOR INSERT
+WITH CHECK (true);
+📱 Pages
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Home (/) - Hero section with featured reviews
+Reviews (/reviews) - All reviews sorted by newest
+Submit (/submit) - Form to submit new movie reviews
 
-Follow these steps:
+🎨 Design Features
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+Dark cinema theme with gold (#F59E0B) accents
+Responsive layout
+Star rating system
+Form validation
+Navigation header with logo
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/fbd35426-a917-4137-81c4-68cbcc55b6d2) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+📝 License
+This project is built using Lovable platform.
