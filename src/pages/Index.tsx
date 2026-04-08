@@ -70,29 +70,30 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <header className="sticky top-0 z-10 bg-slate-950 border-b border-slate-800">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-3">
-              <div className="bg-primary rounded-lg p-2">
-                <Film className="w-6 h-6 text-primary-foreground" />
+              <div className="bg-[#f5c518] rounded-sm px-3 py-2">
+                <Film className="w-6 h-6 text-slate-950" />
               </div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                CineReviews
-              </h1>
+              <div>
+                <h1 className="text-2xl font-black tracking-tight text-[#f5c518]">
+                  CineReviews
+                </h1>
+                <p className="text-sm text-slate-400">Community movie reviews in IMDb style</p>
+              </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Button onClick={() => navigate("/submit")} className="gap-2 bg-[#f5c518] text-slate-950 hover:bg-yellow-400">
+                <Plus className="w-4 h-4" />
+                Add Review
+              </Button>
               {user ? (
-                <>
-                  <Button onClick={() => navigate("/submit")} className="gap-2">
-                    <Plus className="w-4 h-4" />
-                    Add Review
-                  </Button>
-                  <Button variant="outline" onClick={() => supabase.auth.signOut()}>
-                    Logout
-                  </Button>
-                </>
+                <Button variant="outline" onClick={() => supabase.auth.signOut()}>
+                  Logout
+                </Button>
               ) : (
                 <Button onClick={() => navigate("/auth")}>Sign In</Button>
               )}
@@ -102,22 +103,37 @@ const Index = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="mb-8 space-y-4">
-          <h2 className="text-4xl font-bold">Discover Movie Reviews</h2>
-          <p className="text-muted-foreground text-lg">
-            Explore what the community thinks about the latest films
-          </p>
+        <div className="mb-8 rounded-3xl border border-slate-800 bg-slate-900 p-8 shadow-xl shadow-slate-950/30">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="space-y-3">
+              <p className="text-sm uppercase tracking-[0.24em] text-[#f5c518]">Top rated reviews</p>
+              <h2 className="text-5xl font-black tracking-tight text-white">Discover Movie Reviews</h2>
+              <p className="max-w-2xl text-slate-400 text-lg">
+                Read verified community reviews, browse top ratings, and explore the latest movie opinions.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <div className="rounded-2xl bg-slate-800/90 p-4">
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Reviews</p>
+                <p className="text-3xl font-bold text-white">{reviews.length}</p>
+              </div>
+              <div className="rounded-2xl bg-slate-800/90 p-4">
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Sorted by</p>
+                <p className="text-3xl font-bold text-white">{sortBy === "date" ? "Newest" : "Highest Rated"}</p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-8">
           <Input
             placeholder="Search by movie name..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1"
+            className="flex-1 bg-slate-900 text-slate-100 border-slate-800 placeholder:text-slate-500"
           />
           <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px] border-slate-800 bg-slate-900 text-slate-100">
               <SelectValue placeholder="Sort by" />
             </SelectTrigger>
             <SelectContent>
