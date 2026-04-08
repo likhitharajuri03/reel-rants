@@ -16,6 +16,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter
+        basename="/reel-rants"
         future={{
           v7_startTransition: true,
           v7_relativeSplatPath: true,
@@ -25,7 +26,6 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/submit" element={<SubmitReview />} />
           <Route path="/auth" element={<Auth />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
