@@ -15,38 +15,32 @@ interface ReviewCardProps {
 
 export const ReviewCard = ({ review }: ReviewCardProps) => {
   return (
-    <Card className="rounded-3xl border border-slate-800 bg-white/95 shadow-xl shadow-slate-950/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
-      <CardHeader className="space-y-4 p-6">
-        <div className="flex items-start justify-between gap-4">
+    <Card className="rounded-[1.75rem] border border-slate-800 bg-slate-950/95 shadow-2xl shadow-slate-950/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+      <CardHeader className="space-y-4 px-6 pt-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h3 className="text-xl font-semibold text-slate-950 line-clamp-2">
-              {review.movie_name}
-            </h3>
-            <p className="mt-1 text-sm text-slate-500">Review by {review.reviewer_name}</p>
+            <h3 className="text-xl font-semibold text-white line-clamp-2">{review.movie_name}</h3>
+            <p className="mt-2 text-sm text-slate-400">Review by {review.reviewer_name}</p>
           </div>
-          <div className="flex flex-col items-end gap-2 text-right">
-            <span className="inline-flex items-center rounded-full bg-[#f5c518] px-3 py-1 text-sm font-semibold text-slate-950">
-              {review.rating.toFixed(1)} / 5
-            </span>
-            <div className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-slate-400">
-              <Calendar className="w-3 h-3" />
-              <span>{format(new Date(review.date_submitted), "MMM d, yyyy")}</span>
-            </div>
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#f5c518] px-3 py-1 text-sm font-semibold text-slate-950">
+            {review.rating.toFixed(1)} / 5
           </div>
+        </div>
+        <div className="flex items-center gap-2 text-sm text-slate-400">
+          <Calendar className="w-4 h-4" />
+          <span>{format(new Date(review.date_submitted), "MMM d, yyyy")}</span>
         </div>
         <div className="flex items-center gap-1 text-[#f5c518]">
           {[...Array(5)].map((_, i) => (
             <Star
               key={i}
-              className={`w-4 h-4 ${i < review.rating ? "fill-current" : "text-slate-300"}`}
+              className={`w-4 h-4 ${i < review.rating ? "fill-current" : "text-slate-700"}`}
             />
           ))}
         </div>
       </CardHeader>
-      <CardContent className="border-t border-slate-200/80 p-6">
-        <p className="text-slate-700 leading-relaxed line-clamp-5">
-          {review.review_text}
-        </p>
+      <CardContent className="border-t border-slate-800 px-6 pb-6 pt-4">
+        <p className="text-slate-300 leading-relaxed line-clamp-5">{review.review_text}</p>
       </CardContent>
     </Card>
   );
